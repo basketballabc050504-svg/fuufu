@@ -1,3 +1,6 @@
+console.log(window.SHOPPING_LIST_CONFIG);  
+console.log(window.supabase);
+console.log(canUseCloud);
 const LOCAL_STORAGE_KEY = "couple-shopping-list:v1";
 const SHARE_CODE_KEY = "couple-shopping-list:share-code";
 
