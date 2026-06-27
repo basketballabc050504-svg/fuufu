@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0f6b5f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="買い物リスト">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>買い物リスト</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="label">Shared Shopping</p>
+          <h1>買い物リスト</h1>
+        </div>
+        <div class="counter" aria-live="polite">
+          <strong id="activeCount">0</strong>
+          <span>未購入</span>
+        </div>
+      </header>
+
+      <form id="addForm" class="add-form">
+        <label for="itemInput">購入予定の商品</label>
+        <div class="add-row">
+          <input id="itemInput" name="itemInput" type="text" maxlength="80" placeholder="例: 卵" autocomplete="off" required>
+          <button type="submit">追加</button>
+        </div>
+      </form>
+
+      <section class="sync-panel" aria-label="共有設定">
+        <div>
+          <p class="sync-title">共有設定</p>
+          <p id="syncStatus" class="sync-status">この端末内に保存中</p>
+        </div>
+        <form id="syncForm" class="sync-form">
+          <input id="shareCodeInput" type="password" autocomplete="off" placeholder="夫婦の共有コード">
+          <button type="submit">設定</button>
+        </form>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>購入予定</h2>
+          <span id="plannedCount">0件</span>
+        </div>
+        <ul id="plannedList" class="item-list"></ul>
+        <p id="plannedEmpty" class="empty">追加した商品がここに表示されます。</p>
+      </section>
+
+      <section class="section purchased-section">
+        <div class="section-title">
+          <h2>購入済み</h2>
+          <span id="purchasedCount">0件</span>
+        </div>
+        <ul id="purchasedList" class="item-list"></ul>
+        <p id="purchasedEmpty" class="empty">チェックした商品がここに移動します。</p>
+      </section>
+    </main>
+
+    <template id="itemTemplate">
+      <li class="item-row">
+        <label class="check-wrap">
+          <input class="purchase-check" type="checkbox">
+          <span class="box" aria-hidden="true"></span>
+        </label>
+        <form class="edit-form">
+          <input class="name-input" type="text" maxlength="80" aria-label="商品名">
+        </form>
+        <button class="delete-button" type="button">削除</button>
+      </li>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
